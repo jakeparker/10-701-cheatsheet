@@ -341,6 +341,10 @@
 \section{Regression} \seperator
 	\subsection{Linear Regression}
 		\begin{mdframed}
+			\vspace{10mm}
+		\end{mdframed}
+		\begin{mdframed}
+			\vspace{20mm}
 		\end{mdframed}
 	\subsection{Ridge Regression}
 		\begin{mdframed}
@@ -348,77 +352,126 @@
 				\estimate{\theta}_{\map}\argmin_{\theta} \sum_{i=1}^{n} {(Y_i - X_i \theta)}^2 + \lambda \norm{\theta}_{2}^{2}
 			\]
 		\end{mdframed}
+		\begin{mdframed}
+			\vspace{20mm}
+		\end{mdframed}
 	\subsection{Lasso Regression}
 		\begin{mdframed}
 			\[
 				\estimate{\theta}_{\map}\argmin_{\theta} \sum_{i=1}^{n} {(Y_i - X_i \theta)}^2 + \lambda \norm{\theta}_{1}
 			\]
 		\end{mdframed}
+		\begin{mdframed}
+			\vspace{15mm}
+		\end{mdframed}
 	\subsection{Polynomial Regression}
 		\begin{mdframed}
+			\vspace{10mm}
+		\end{mdframed}
+		\begin{mdframed}
+			\vspace{20mm}
 		\end{mdframed}
 
 % Parametric Models
 \section{Classification} \seperator
 	\subsection{Logistic Regression}
 		\begin{mdframed}
+			\vspace{10mm}
+		\end{mdframed}
+		\begin{mdframed}
+			\vspace{20mm}
 		\end{mdframed}
 	\subsection{Naive Bayes}
 		\begin{mdframed}
+			\vspace{10mm}
 		\end{mdframed}
+		\begin{mdframed}
+			\vspace{20mm}
+		\end{mdframed}
+
+\vfill\null
+\columnbreak
+
 	\subsection{Boosting}
 		\begin{mdframed}
+			\vspace{10mm}
+		\end{mdframed}
+		\begin{mdframed}
+			\vspace{20mm}
 		\end{mdframed}
 	\subsection{Decision Trees}
 		\begin{mdframed}
 			\begin{align*}
-		    \argmax_{X_i} \Big\lbrack \Entropy{Y} - \Entropy{Y \given X_i} \Big\rbrack 
-		      &= \argmin_{X_i} \Entropy{Y \given X_i} \\
+		    \argmax_{X_i} \Big\lbrack \Entropy{Y} &- \Entropy{Y \given X_i} \Big\rbrack = \argmin_{X_i} \Entropy{Y \given X_i} \\
 		      &= \argmin_{X_i} \sum_{x \in \Set{X_i}} \Big\lbrack \Prob{X_i{=}x} \Entropy{Y \given X_i{=}x} \Big\rbrack \\
 		      &= \argmin_{X_i} {-} \sum_{x \in \Set{X_i}} \bigg\lbrack \Prob{X_i{=}x} \sum_{y \in \Set{Y}} \Big\lbrack \Prob{Y{=} \given X_i{=}x} \log_2 \Prob{Y{=}y \given X_i{=}x} \Big\rbrack \bigg\rbrack
 		  \end{align*}
 		\end{mdframed}
+		\begin{mdframed}
+			\vspace{20mm}
+		\end{mdframed}
 	\subsection{Support Vector Machines}
 		\begin{mdframed}
+			\vspace{10mm}
+		\end{mdframed}
+		\begin{mdframed}
+			\vspace{30mm}
 		\end{mdframed}
 
 % Parametric Models
 \section{Deep Learning} \seperator
 	\subsection{Common Activation Functions}
 		\begin{mdframed}
+			\vspace{20mm}
 		\end{mdframed}
 	\subsection{Backpropagation}
 		\begin{mdframed}
+			\vspace{35mm}
 		\end{mdframed}
 	\subsection{Gradient Descent}
 		\begin{mdframed}
+			\vspace{35mm}
 		\end{mdframed}
 	\subsection{Perceptron}
 		\begin{mdframed}
+			\vspace{15mm}
 		\end{mdframed}
 	\subsection{MLP}
 		\begin{mdframed}
+			\vspace{15mm}
 		\end{mdframed}
 	\subsection{CNN}
 		\begin{mdframed}
+			\vspace{15mm}
 		\end{mdframed}
 	\subsection{RNN}
 		\begin{mdframed}
+			\vspace{15mm}
 		\end{mdframed}
 	\subsection{LSTM}
 		\begin{mdframed}
+			\vspace{15mm}
 		\end{mdframed}
 
 % Non--Parametric Models
 \section{Clustering} \seperator % Supervised Learning
 	\subsection{KNN}
 		\begin{mdframed}
+			\vspace{10mm}
+		\end{mdframed}
+		\begin{mdframed}
+			\vspace{15mm}
 		\end{mdframed}
 	\subsection{Kernel Regression}
 		\begin{mdframed}
+			\vspace{10mm}
+		\end{mdframed}
+		\begin{mdframed}
+			\vspace{15mm}
 		\end{mdframed}
 	\subsection{Kernel Trick}
 		\begin{mdframed}
+			\vspace{15mm}
 		\end{mdframed}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
