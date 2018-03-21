@@ -3,7 +3,7 @@
 
 \usepackage{pdfpages}
 \graphicspath{{graphics/}} % Sets the default location of pictures
-\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio} % Improves figure scaling
+\setkeys{Gin}{width=0.65\linewidth,totalheight=0.65\textheight,keepaspectratio} % Improves figure scaling
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -13,114 +13,254 @@
 \section{Statisitcs} \seperator
 	\subsection{LLN}
 		\begin{mdframed}
+			\[
+				\lim_{n \rightarrow \infinity} \abs{\frac{1}{n} \sum_{i=1}^{n} x_i - \Exp{x}} = 0
+			\]
 		\end{mdframed}
 	\subsection{Unbiasedness}
 		\begin{mdframed}
+			\[
+				\mathrm{Bias}_{\theta} = \Exp{\estimate{\theta}} - \theta = \Exp{\estimate{\theta} - \theta} = 0
+			\]
 		\end{mdframed}
 	\subsection{Consistency}
 		\begin{mdframed}
+			\[
+				\lim_{n \rightarrow \infinity} \Prob{ \abs{\widehat{X} - \frac{1}{n}\sum_{i=1}^{n} X_i} \leq \epsilon} = 1
+			\]
 		\end{mdframed}
-	\subsection{Hoeffding's Inequality}
-		\begin{mdframed}
-		\end{mdframed}
-	\subsection{Chebyshev's Inequality}
-		\begin{mdframed}
-		\end{mdframed}
+	% \subsection{Hoeffding's Inequality}
+	% 	\begin{mdframed}
+	% 	\end{mdframed}
+	% \subsection{Chebyshev's Inequality}
+	% 	\begin{mdframed}
+	% 	\end{mdframed}
 	\subsection{Properties of Gaussians}
 		\begin{mdframed}
+			\[
+				X \as \mathcal{N}(\mu,\, \sigma^2) \implies Y = aX + b \as \mathcal{N}(a\mu + b,\, a^2\sigma^2)
+			\]
+			\[
+				X \as \mathcal{N}(\mu_x,\, \sigma^2_x),\,\qquad Y \as \mathcal{N}(\mu_y,\, \sigma^2_y),\,\quad \implies \quad Z = X + Y \as \mathcal{N}(\mu_x + \mu_y,\, \sigma^2_x + \sigma^2_y)
+			\]
 		\end{mdframed}
-	\subsection{Bayes Rule} % why not
-		\begin{mdframed}
-			% posterior, likelihood, prior, marginal
-			% unconditional version
-			% conditional version
-		\end{mdframed}
-	\subsection{Conjugate Prior}
-		\begin{mdframed}
-			% common conjugate priors...
-		\end{mdframed}
+	% \subsection{Bayes Rule} % why not
+	% 	\begin{mdframed}
+	% 		% posterior, likelihood, prior, marginal
+	% 		% unconditional version
+	% 		% conditional version
+	% 	\end{mdframed}
+	% \subsection{Conjugate Prior}
+	% 	\begin{mdframed}
+	% 		% common conjugate priors...
+	% 	\end{mdframed}
 	
+% % Foundations
+% \section{Estimation} \seperator
+% 	\subsection{MLE}
+% 		\begin{mdframed}
+% 		\end{mdframed}
+% 	\subsection{MAP}
+% 		\begin{mdframed}
+% 		\end{mdframed}
+
 % Foundations
-\section{Estimation} \seperator
-	\subsection{MLE}
+\section{Information Theory} \seperator
+	\subsection{Information}
 		\begin{mdframed}
+			\[
+				\Information{S} &= \log_2 \frac{1}{\Prob{S}}
+			\]
 		\end{mdframed}
-	\subsection{MAP}
+	\subsection{Entropy}
 		\begin{mdframed}
+			\begin{align*}
+		    \Entropy{S} &= \sum_{s \in \Set{S}} \Prob{S{=}s} \cdot \Information{S{=}s} = \sum_{s \in \Set{S}} \Prob{S{=}s} \log_2 \frac{1}{\Prob{S{=}s}} \\
+		                &=\quad\! \Exp{\log_2 \sfrac{1}{\Prob{S{=}s}}}\qquad\quad\, =\ {-} \Exp{\log_2 \Prob{S{=}s}} \\
+		                &= {-} \sum_{s \in \Set{S}} \Prob{S{=}s} \log_2 \Prob{S{=}s}
+		  \end{align*}
 		\end{mdframed}
-	\subsection{Bayesian Estimation}
+	\subsection{Information Gain}
 		\begin{mdframed}
+			\[
+				\Information{Y,\, X_i} &= \Entropy{Y} - \Entropy{Y \given X_i}
+			\]
 		\end{mdframed}
 
 % Foundations
 \section{Learning Theory} \seperator
-	\subsection{PAC}
+	\subsection{PAC Learning}
 		\begin{mdframed}
+			\[
+				\Prob{\abs{\estimate{\theta} - \optimal{\theta}} \leq \epsilon} \geq 1 - \delta 
+			\]
+			\[
+				\Prob{\abs{\estimate{\theta} - \optimal{\theta}} > \epsilon} < \delta
+			\]
 		\end{mdframed}
 		
 % Foundations
 \section{Decision Theory} \seperator
-	\subsection{Common Loss Functions}
-		\begin{mdframed}
-		\end{mdframed}
+	% \subsection{Common Loss Functions}
+	% 	\begin{mdframed}
+	% 	\end{mdframed}
+	\subsection{Risk}
+	\begin{mdframed}
+		\[
+			\mathrm{Risk}(f) = R(f) := \mathbb{E}_{(X,Y)}[\mathrm{loss}(Y,\, f(X)]
+		\]
+	\end{mdframed}
 	\subsection{Bayes Risk}
 		\begin{mdframed}
+			\[
+				R(f^*) \leq R(f),\ \forall\, f
+			\]
 		\end{mdframed}
 	\subsection{Bayes Optimal Rule}
 		\begin{mdframed}
+			\[
+				f^{*}(P) = \argmin_{f} \mathbb{E}_{(X,Y) \as P} [\mathrm{loss}(Y,\, f(X))]
+			\]
 		\end{mdframed}
 	\subsection{Emperical Risk Minimization}
 		\begin{mdframed}
+			\[
+				\estimate{f}_{n} = \argmin_{f} \frac{1}{n} \sum_{i=1}^{n} [\mathrm{loss}(Y_i,\, f(x_i))]\ \overset{\text{LNN}}{\underset{n \rightarrow \infinity}{\longrightarrow}}\ \argmin_{f} \mathbb{E}_{(X,\,Y)} [\mathrm{loss}(Y,\, f(X))]
+			\]
 		\end{mdframed}
 
 % Foundations
 \section{Risk} \seperator
 	\subsection{True Risk}
 		\begin{mdframed}
+			\[
+				R(f) := \mathbb{E}_{(X,Y)}[\ell(f(X),\, Y)]
+			\]
 		\end{mdframed}
 	\subsection{Emperical Risk}
 		\begin{mdframed}
+			\[
+				\widehat{R}_{\mathcal{D}}(f) := \frac{1}{\Card{\mathcal{D}}} \sum_{i \in \mathcal{D}} [\ell(f(X_i),\, Y_i)]
+			\]
 		\end{mdframed}
 	\subsection{Excess Risk}
 		\begin{mdframed}
+			\[
+				\Exp{R(\estimate{f}_{n})} - R(\optimal{f})
+			\]
 		\end{mdframed}
 	\subsection{Structural Risk}
 		\begin{mdframed}
+			\begin{minipage}{.5\textwidth}
+				\[
+					\abs{R(f) - \widehat{R}_{n}(f)} \leq C(f)\qquad \forall\, f \in \mathcal{F}
+				\]
+				\[
+					R(f) \leq \widehat{R}_{n} + C(f),\qquad \forall\, f \in \mathcal{F}
+				\]
+				Use \(\widehat{R}_{n}(\estimate{f}_{n}) + C(\estimate{f}_{n})\) as a \textit{pessimistic} estimate of true risk.
+			\end{minipage}%
+			\begin{minipage}{.5\textwidth}
+				\includegraphics{structural_risk_curve.png}
+			\end{minipage}
 		\end{mdframed}
 
 	% Foundations
 	\section{Risk Estimation}
 		\subsection{Bias--Variance Tradeoff}
 			\begin{mdframed}
-				% bias =
-				% variance = 
-				% E[ (f(x) - f*(x))^2 ]  =  Bias^2 + Variance
-				% ...
-			\end{mdframed}
-		\subsection{Hold--out Method}
-			\begin{mdframed}
-				% bias, variance tradeoff
+				\begin{minipage}{.33\textwidth}
+					\[
+						\mathrm{Bias} = \Exp{f(X)} - \optimal{f}(X)
+					\]
+					\[
+						\mathrm{Variance} = \Exp{{(f(X) - \Exp{f(X))}^2}}
+					\]
+					\[
+						\Exp{{(f(X) - \optimal{f}(X))}^2} = \mathrm{Bias}^2 + \mathrm{Variance}
+					\]
+				\end{minipage}%
+				\begin{minipage}{.33\textwidth}
+					\includegraphics{bias_vs_variance_error.png}
+				\end{minipage}%
+				\begin{minipage}{.33\textwidth}
+					\includegraphics{test_vs_train_error.png}
+				\end{minipage}
 			\end{mdframed}
 		\subsection{K--Fold Cross--Validation}
 			\begin{mdframed}
 				% bias, variance tradeoff
+				\begin{minipage}{.5\textwidth}
+				\end{minipage}%
+				\begin{minipage}{.5\textwidth}
+					\includegraphics{K_fold_cross_validation.png}
+				\end{minipage}
 			\end{mdframed}
 		\subsection{LOO Cross--Validation}
 			\begin{mdframed}
 				% bias, variance tradeoff
+				\begin{minipage}{.5\textwidth}
+					Special Case of K--Fold with \(K=n\) partitions.\\
+				\end{minipage}%
+				\begin{minipage}{.5\textwidth}
+					\includegraphics{LOO_cross_validation.png}
+				\end{minipage}
 			\end{mdframed}
 		\subsection{Random Subsampling}
 			\begin{mdframed}
 				% bias, variance tradeoff
+				\begin{minipage}{.5\textwidth}
+					Randomly subsample a fixed fraction \(\alpha n\ (0 < \alpha < 1)\) of the dataset for validation.\\
+					Form hold--out predictor with remaining data as training data.\\
+					Repeat K times.\\
+					Final Predictor is average / majority vote over K hold--out estimates
+				\end{minipage}%
+				\begin{minipage}{.5\textwidth}
+					\includegraphics{random_subsampling.png}
+				\end{minipage}
+			\end{mdframed}
+		\subsection{Hold--out Method}
+			\begin{mdframed}
+				\[
+					\mathcal{D} = \Set{(X_i,\, Y_i)}_{i=1}^{n}
+				\]
+				1. Split into two sets
+				\[
+					\underbrace{\mathcal{D}_{T} = \Set{(X_i,\, Y_i)}_{i=1}^{m}}_{\text{training set}}
+					\qquad\qquad
+					\underbrace{\mathcal{D}_{V} = \Set{(X_i,\, Y_i)}_{i=m+1}^{n}}_{\text{holdout set}}
+				\]
+				2. use \(\mathcal{D}_{T}\) to train a predictor \(\estimate{f}_{\mathcal{D}_{T}}\)\\
+				3. use \(\mathcal{D}_{V}\) to evaluate the predictor \(\widehat{R}_{\mathcal{D}_{V}}(\estimate{f}_{\mathcal{D}_{T}})\)
+			\end{mdframed}
+		\subsection{Estimating True Risk}
+			\begin{mdframed}
+				\begin{minipage}{.5\textwidth}
+					Estimate the error of a predictor on \(n\) data points.\\
+					If K is large (close to \(n)\), bias of error estimate is small since each training set has close to \(n\) data points.\\
+					However, variance of error estiamtes is high since each validation set has fewer data points and \(\widehat{R}_{V_{k}}\) might deviate a lot from the mean.\\
+					\[
+						\text{Error estimate} = \frac{1}{K} \sum_{k=1}^{K} \widehat{R}_{V_{k}} (\estimate{f}_{T_{k}})
+					\]
+				\end{minipage}%
+				\begin{minipage}{.5\textwidth}
+					\includegraphics{estimating_true_risk.png}
+				\end{minipage}
 			\end{mdframed}
 
 % Foundations
 \section{Risk Minimization} \seperator
 	\subsection{Emperical Risk Minimization}
 		\begin{mdframed}
+			\[
+				\widehat{f_n} = \argmin_{f} \frac{1}{n} \sum_{i=1}{n} [\mathrm{loss}(Y_i,\, f(x_i))]
+			\]
 		\end{mdframed}
 	\subsection{Structural Risk Minimization}
 		\begin{mdframed}
+			\[
+				\estimate{f}_{n} = \argmin_{f \in \mathcal{F}} \lbrack \widehat{R}_{n}(f) + \lambda C(f) \rbrack
+			\]
 		\end{mdframed}
 
 % Foundations
@@ -132,28 +272,70 @@
 \section{Regularization} \seperator
 	\subsection{Complexity Regularization}
 		\begin{mdframed}
+			\[
+				\estimate{f}_{n} = \argmin_{f \in \mathcal{F}} \lbrace \widehat{R}_{n}(f) + C(f) \rbrace
+			\]
 		\end{mdframed}
 	\subsection{Information Criteria}
 		\begin{mdframed}
+			AIC (Akiake IC) \quad \(C(f) = \# parameters\)\\
+			\indent Allows \(\#\) parameters to be infinite as \(\#\) training data \(n\) becomes large
+		\end{mdframed}
+		\begin{mdframed}
+			BIC (Bayesian IC) \quad \(C(f) = \# parameters * \log n\)\\
+			\indent Penalizes complex models more heavily -- limits complexity of models as \(\#\) training data \(n\) becomes large
 		\end{mdframed}
 
 % Foundations
 \section{Model Selection} \seperator
 	\begin{mdframed}
+		\begin{itemize}
+			\item define a finite set of model classes
+			\item estimate true risk for each model class
+			\item select model class with lowest estimated true risk
+		\end{itemize}
+	\end{mdframed}
+	\begin{mdframed}
+		Model classes \(\Set{\mathcal{F}_{\lambda}}\) of increasing complexity \(\mathcal{F}_{1} < \mathcal{F}_{2} < \ldots\)
+		\[\min_{\lambda} \min_{f \in \mathcal{F}_{\lambda}} J(f,\, \lambda)\]
+		\begin{itemize}
+			\item given \(\lambda\) estimate \(\estimate{f}_{\lambda}\) using \textit{emperical / structural / complexity regularized} risk minimization
+			\item select \(\lambda\) for which \(\estimate{f}_{\lambda}\) has minimum true risk estimated using \textit{cross--validation / hold--out / information criteria}
+		\end{itemize}
 	\end{mdframed}
 
 % Foundations
 \section{Generalization Error} \seperator
 	\subsection{Terms}
 		\begin{mdframed}
+			\begin{align*}
+				& \text{estimated predictor} := \estimate{f}_{n} \\
+				& \text{optimal predictor} := \optimal{f} \\
+				& \text{risk of estimated predictor} := R(\estimate{f}_{n}) \\
+				& \text{expected risk} := \Exp{R(\estimate{f}_{n})} \\
+				& \text{risk of optimal predictor} := R(\optimal{f}) \\
+				& \text{excess risk} := \Exp{R(\estimate{f}_{n})} - R(\optimal{f})
+			\end{align*}
 		\end{mdframed}
 	\subsection{True Risk Decomposition}
 		\begin{mdframed}
-			% estimation error
-			% approximation error
-			% Error vs Complexity Plot
+		\[
+			\Exp{R(\estimate{f}_{n})} - \optimal{R} = \underbrace{\Big\lparen \Exp{R(\estimate{f}_{n})} - \inf_{f \in \mathcal{F}} R(f) \Big\rparen}_{\text{estimation error}} + \underbrace{\Big\lparen \inf_{f \in \mathcal{F}} R(f) - \optimal{R} \Big\rparen}_{\text{approximation error}}
+		\]
+		\textit{Estimation Error} : due to randomness of training data \\
+		\textit{Approximation Error} : due to restriction of model class \\
+		\end{mdframed}
+		\begin{mdframed}
+			\begin{minipage}{0.5\textwidth}
+				\includegraphics{true_risk_triangle.png}
+			\end{minipage}%
+			\begin{minipage}{0.5\textwidth}
+				\includegraphics{true_risk_curve.png}
+			\end{minipage}
 		\end{mdframed}
 
+\clearpage		
+		
 % Parametric Models
 \section{Regression} \seperator
 	\subsection{Linear Regression}
@@ -161,9 +343,15 @@
 		\end{mdframed}
 	\subsection{Ridge Regression}
 		\begin{mdframed}
+			\[
+				\estimate{\theta}_{\map}\argmin_{\theta} \sum_{i=1}^{n} {(Y_i - X_i \theta)}^2 + \lambda \norm{\theta}_{2}^{2}
+			\]
 		\end{mdframed}
 	\subsection{Lasso Regression}
 		\begin{mdframed}
+			\[
+				\estimate{\theta}_{\map}\argmin_{\theta} \sum_{i=1}^{n} {(Y_i - X_i \theta)}^2 + \lambda \norm{\theta}_{1}
+			\]
 		\end{mdframed}
 	\subsection{Polynomial Regression}
 		\begin{mdframed}
@@ -173,9 +361,6 @@
 \section{Classification} \seperator
 	\subsection{Logistic Regression}
 		\begin{mdframed}
-			% basis functions
-			% nonlinear features
-			% ...
 		\end{mdframed}
 	\subsection{Naive Bayes}
 		\begin{mdframed}
@@ -185,6 +370,12 @@
 		\end{mdframed}
 	\subsection{Decision Trees}
 		\begin{mdframed}
+			\begin{align*}
+		    \argmax_{X_i} \Big\lbrack \Entropy{Y} - \Entropy{Y \given X_i} \Big\rbrack 
+		      &= \argmin_{X_i} \Entropy{Y \given X_i} \\
+		      &= \argmin_{X_i} \sum_{x \in \Set{X_i}} \Big\lbrack \Prob{X_i{=}x} \Entropy{Y \given X_i{=}x} \Big\rbrack \\
+		      &= \argmin_{X_i} {-} \sum_{x \in \Set{X_i}} \bigg\lbrack \Prob{X_i{=}x} \sum_{y \in \Set{Y}} \Big\lbrack \Prob{Y{=} \given X_i{=}x} \log_2 \Prob{Y{=}y \given X_i{=}x} \Big\rbrack \bigg\rbrack
+		  \end{align*}
 		\end{mdframed}
 	\subsection{Support Vector Machines}
 		\begin{mdframed}
