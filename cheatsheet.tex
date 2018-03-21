@@ -3,7 +3,12 @@
 
 \usepackage{pdfpages}
 \graphicspath{{graphics/}} % Sets the default location of pictures
-\setkeys{Gin}{width=0.65\linewidth,totalheight=0.65\textheight,keepaspectratio} % Improves figure scaling
+\setkeys{Gin}{width=0.8\linewidth,totalheight=0.8\textheight,keepaspectratio} % Improves figure scaling
+
+% \begin{minipage}{0.5\textwidth}
+% \end{minipage}%
+% \begin{minipage}{0.5\textwidth}
+% \end{minipage}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -66,11 +71,19 @@
 
 % Foundations
 \section{Information Theory} \seperator
-	\subsection{Information}
+	\subsection{Information \qquad\qquad\qquad\qquad\qquad\qquad Information Gain}
 		\begin{mdframed}
-			\[
-				\Information{S} &= \log_2 \frac{1}{\Prob{S}}
-			\]
+			\begin{minipage}{0.5\textwidth}
+				\[
+					\Information{S} = \log_2 \frac{1}{\Prob{S}}
+				\]
+			\end{minipage}%
+			\vrule%
+			\begin{minipage}{0.5\textwidth}
+				\[
+					\Information{Y,\, X_i} = \Entropy{Y} - \Entropy{Y \given X_i}
+				\]
+			\end{minipage}
 		\end{mdframed}
 	\subsection{Entropy}
 		\begin{mdframed}
@@ -79,12 +92,6 @@
 		                &=\quad\! \Exp{\log_2 \sfrac{1}{\Prob{S{=}s}}}\qquad\quad\, =\ {-} \Exp{\log_2 \Prob{S{=}s}} \\
 		                &= {-} \sum_{s \in \Set{S}} \Prob{S{=}s} \log_2 \Prob{S{=}s}
 		  \end{align*}
-		\end{mdframed}
-	\subsection{Information Gain}
-		\begin{mdframed}
-			\[
-				\Information{Y,\, X_i} &= \Entropy{Y} - \Entropy{Y \given X_i}
-			\]
 		\end{mdframed}
 
 % Foundations
@@ -104,18 +111,20 @@
 	% \subsection{Common Loss Functions}
 	% 	\begin{mdframed}
 	% 	\end{mdframed}
-	\subsection{Risk}
+	\subsection{Risk \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\ Bayes Risk}
 	\begin{mdframed}
-		\[
-			\mathrm{Risk}(f) = R(f) := \mathbb{E}_{(X,Y)}[\mathrm{loss}(Y,\, f(X)]
-		\]
-	\end{mdframed}
-	\subsection{Bayes Risk}
-		\begin{mdframed}
+		\begin{minipage}{0.5\textwidth}
 			\[
-				R(f^*) \leq R(f),\ \forall\, f
+				\mathrm{Risk}(f) = R(f) := \mathbb{E}_{(X,Y)}[\mathrm{loss}(Y,\, f(X)]
 			\]
-		\end{mdframed}
+		\end{minipage}%
+		\qquad\vrule%
+		\begin{minipage}{0.5\textwidth}
+			\[
+				R(f^*) \leq R(f),\ \forall\, f \in \mathcal{F}
+			\]
+		\end{minipage}
+	\end{mdframed}
 	\subsection{Bayes Optimal Rule}
 		\begin{mdframed}
 			\[
@@ -125,29 +134,31 @@
 	\subsection{Emperical Risk Minimization}
 		\begin{mdframed}
 			\[
-				\estimate{f}_{n} = \argmin_{f} \frac{1}{n} \sum_{i=1}^{n} [\mathrm{loss}(Y_i,\, f(x_i))]\ \overset{\text{LNN}}{\underset{n \rightarrow \infinity}{\longrightarrow}}\ \argmin_{f} \mathbb{E}_{(X,\,Y)} [\mathrm{loss}(Y,\, f(X))]
+				\estimate{f}_{n} = \argmin_{f} \frac{1}{n} \sum_{i=1}^{n} [\mathrm{loss}(Y_i,\, f(x_i))]\quad \overset{\text{LNN}}{\underset{n \rightarrow \infinity}{\longrightarrow}}\quad \argmin_{f} \mathbb{E}_{(X,\,Y)} [\mathrm{loss}(Y,\, f(X))]
 			\]
 		\end{mdframed}
 
 % Foundations
 \section{Risk} \seperator
-	\subsection{True Risk}
+	\subsection{True Risk \qquad\qquad\qquad\qquad\ Emperical Risk \qquad\qquad\quad Excess Risk}
 		\begin{mdframed}
-			\[
-				R(f) := \mathbb{E}_{(X,Y)}[\ell(f(X),\, Y)]
-			\]
-		\end{mdframed}
-	\subsection{Emperical Risk}
-		\begin{mdframed}
-			\[
-				\widehat{R}_{\mathcal{D}}(f) := \frac{1}{\Card{\mathcal{D}}} \sum_{i \in \mathcal{D}} [\ell(f(X_i),\, Y_i)]
-			\]
-		\end{mdframed}
-	\subsection{Excess Risk}
-		\begin{mdframed}
-			\[
-				\Exp{R(\estimate{f}_{n})} - R(\optimal{f})
-			\]
+			\begin{minipage}{0.33\textwidth}
+				\[
+					R(f) := \mathbb{E}_{(X,Y)}[\ell(f(X),\, Y)]
+				\]
+			\end{minipage}%
+			\quad\vrule\quad%
+			\begin{minipage}{0.33\textwidth}
+				\[
+					\widehat{R}_{\mathcal{D}}(f) := \frac{1}{\Card{\mathcal{D}}} \sum_{i \in \mathcal{D}} [\ell(f(X_i),\, Y_i)]
+				\]
+			\end{minipage}%
+			\quad\vrule\quad%
+			\begin{minipage}{0.33\textwidth}
+				\[
+					\Exp{R(\estimate{f}_{n})} - R(\optimal{f})
+				\]
+			\end{minipage}
 		\end{mdframed}
 	\subsection{Structural Risk}
 		\begin{mdframed}
@@ -187,35 +198,15 @@
 					\includegraphics{test_vs_train_error.png}
 				\end{minipage}
 			\end{mdframed}
-		\subsection{K--Fold Cross--Validation}
+		\subsection{K--Fold CV \qquad\qquad\qquad\quad LOO CV \qquad\qquad\qquad Random Subsampling}
 			\begin{mdframed}
-				% bias, variance tradeoff
-				\begin{minipage}{.5\textwidth}
-				\end{minipage}%
-				\begin{minipage}{.5\textwidth}
+				\begin{minipage}{.33\textwidth}
 					\includegraphics{K_fold_cross_validation.png}
-				\end{minipage}
-			\end{mdframed}
-		\subsection{LOO Cross--Validation}
-			\begin{mdframed}
-				% bias, variance tradeoff
-				\begin{minipage}{.5\textwidth}
-					Special Case of K--Fold with \(K=n\) partitions.\\
 				\end{minipage}%
-				\begin{minipage}{.5\textwidth}
+				\begin{minipage}{.33\textwidth}
 					\includegraphics{LOO_cross_validation.png}
-				\end{minipage}
-			\end{mdframed}
-		\subsection{Random Subsampling}
-			\begin{mdframed}
-				% bias, variance tradeoff
-				\begin{minipage}{.5\textwidth}
-					Randomly subsample a fixed fraction \(\alpha n\ (0 < \alpha < 1)\) of the dataset for validation.\\
-					Form hold--out predictor with remaining data as training data.\\
-					Repeat K times.\\
-					Final Predictor is average / majority vote over K hold--out estimates
 				\end{minipage}%
-				\begin{minipage}{.5\textwidth}
+				\begin{minipage}{.33\textwidth}
 					\includegraphics{random_subsampling.png}
 				\end{minipage}
 			\end{mdframed}
@@ -250,22 +241,32 @@
 
 % Foundations
 \section{Risk Minimization} \seperator
-	\subsection{Emperical Risk Minimization}
+	\subsection{Emperical Risk Minimization \qquad\qquad\qquad\quad Structural Risk Minimization}
 		\begin{mdframed}
-			\[
-				\widehat{f_n} = \argmin_{f} \frac{1}{n} \sum_{i=1}{n} [\mathrm{loss}(Y_i,\, f(x_i))]
-			\]
-		\end{mdframed}
-	\subsection{Structural Risk Minimization}
-		\begin{mdframed}
-			\[
-				\estimate{f}_{n} = \argmin_{f \in \mathcal{F}} \lbrack \widehat{R}_{n}(f) + \lambda C(f) \rbrack
-			\]
+			\begin{minipage}{0.5\textwidth}
+				\[
+					\widehat{f_n} = \argmin_{f} \frac{1}{n} \sum_{i=1}{n} [\mathrm{loss}(Y_i,\, f(x_i))]
+				\]
+			\end{minipage}%
+			\quad\vrule\quad%
+			\begin{minipage}{0.5\textwidth}
+				\[
+					\estimate{f}_{n} = \argmin_{f \in \mathcal{F}} \lbrack \widehat{R}_{n}(f) + \lambda C(f) \rbrack
+				\]
+			\end{minipage}
 		\end{mdframed}
 
 % Foundations
 \section{Overfitting} \seperator
 	\begin{mdframed}
+		\begin{minipage}{\textwidth}
+			\begin{center}
+        \centering
+        \includegraphics{overfitting.png}
+      \end{center}
+		\end{minipage}\\
+		\textit{overfitting} : \textit{discrepency between emperical risk and true risk}\\
+		so emperical risk is no longer a good indicator of true risk
 	\end{mdframed}
 
 % Foundations
