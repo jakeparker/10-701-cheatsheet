@@ -1,9 +1,10 @@
 \documentclass[18pt,a3paper,landscape, ncols=3]{cheatsheet}
 \usepackage[style=boxed]{preamble}
 
-\usepackage{pdfpages}
+% \usepackage{pdfpages} % included in `cheatsheet.sty`
 \graphicspath{{graphics/}} % Sets the default location of pictures
-\setkeys{Gin}{width=0.8\linewidth,totalheight=0.8\textheight,keepaspectratio} % Improves figure scaling
+% width=0.95\linewidth,totalheight=0.95\textheight,keepaspectratio
+\setkeys{Gin}{keepaspectratio} % Improves figure scaling
 
 % \begin{minipage}{0.5\textwidth}
 % \end{minipage}%
@@ -15,7 +16,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Foundations
-\section{Statisitcs} \seperator
+\section{Statistics} \seperator
 	\subsection{LLN}
 		\begin{mdframed}
 			\[
@@ -59,7 +60,7 @@
 	% 	\begin{mdframed}
 	% 		% common conjugate priors...
 	% 	\end{mdframed}
-	
+
 % % Foundations
 % \section{Estimation} \seperator
 % 	\subsection{MLE}
@@ -73,13 +74,13 @@
 \section{Information Theory} \seperator
 	\subsection{Information \qquad\qquad\qquad\qquad\qquad\qquad Information Gain}
 		\begin{mdframed}
-			\begin{minipage}{0.5\textwidth}
+			\begin{minipage}{0.5\linewidth}
 				\[
 					\Information{S} = \log_2 \frac{1}{\Prob{S}}
 				\]
 			\end{minipage}%
 			\vrule%
-			\begin{minipage}{0.5\textwidth}
+			\begin{minipage}{0.5\linewidth}
 				\[
 					\Information{Y,\, X_i} = \Entropy{Y} - \Entropy{Y \given X_i}
 				\]
@@ -98,28 +99,33 @@
 \section{Learning Theory} \seperator
 	\subsection{PAC Learning}
 		\begin{mdframed}
-			\[
-				\Prob{\abs{\estimate{\theta} - \optimal{\theta}} \leq \epsilon} \geq 1 - \delta 
-			\]
-			\[
-				\Prob{\abs{\estimate{\theta} - \optimal{\theta}} > \epsilon} < \delta
-			\]
+			\begin{minipage}{0.5\linewidth}%
+				\[
+					\Prob{\abs{\estimate{\theta} - \optimal{\theta}} \leq \epsilon} \geq 1 - \delta
+				\]
+			\end{minipage}%
+			\vrule%
+			\begin{minipage}{0.5\linewidth}%
+				\[
+					\Prob{\abs{\estimate{\theta} - \optimal{\theta}} > \epsilon} < \delta
+				\]
+			\end{minipage}
 		\end{mdframed}
-		
+
 % Foundations
 \section{Decision Theory} \seperator
 	% \subsection{Common Loss Functions}
 	% 	\begin{mdframed}
 	% 	\end{mdframed}
-	\subsection{Risk \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\ Bayes Risk}
+	\subsection{Risk \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\quad Bayes Risk}
 	\begin{mdframed}
-		\begin{minipage}{0.5\textwidth}
+		\begin{minipage}{0.5\linewidth}
 			\[
-				\mathrm{Risk}(f) = R(f) := \mathbb{E}_{(X,Y)}[\mathrm{loss}(Y,\, f(X)]
+				\mathrm{Risk}(f) = R(f) := \mathbb{E}_{(X,Y)} \Big[\loss \big(Y,\, f(X)\big)\Big]
 			\]
 		\end{minipage}%
 		\qquad\vrule%
-		\begin{minipage}{0.5\textwidth}
+		\begin{minipage}{0.5\linewidth}
 			\[
 				R(f^*) \leq R(f),\ \forall\, f \in \mathcal{F}
 			\]
@@ -128,33 +134,35 @@
 	\subsection{Bayes Optimal Rule}
 		\begin{mdframed}
 			\[
-				f^{*}(P) = \argmin_{f} \mathbb{E}_{(X,Y) \as P} [\mathrm{loss}(Y,\, f(X))]
+				f^{*}(P) = \argmin_{f} \mathbb{E}_{(X,Y) \as P} \Big[\loss \big(Y,\, f(X)\big)\Big]
 			\]
 		\end{mdframed}
 	\subsection{Emperical Risk Minimization}
 		\begin{mdframed}
 			\[
-				\estimate{f}_{n} = \argmin_{f} \frac{1}{n} \sum_{i=1}^{n} [\mathrm{loss}(Y_i,\, f(x_i))]\quad \overset{\text{LNN}}{\underset{n \rightarrow \infinity}{\longrightarrow}}\quad \argmin_{f} \mathbb{E}_{(X,\,Y)} [\mathrm{loss}(Y,\, f(X))]
+				 \estimate{f}_{n} = \argmin_{f} \frac{1}{n} \sum_{i=1}^{n} \Big[\loss \big(Y_i,\, f(x_i)\big)\Big]\ \xrightarrow[n \rightarrow \infinity]{\quad\text{  LNN  }\quad}\ \argmin_{f} \mathbb{E}_{(X,\,Y)} \Big[\loss \big(Y,\, f(X)\big)\Big]
 			\]
 		\end{mdframed}
+
+\columnbreak
 
 % Foundations
 \section{Risk} \seperator
 	\subsection{True Risk \qquad\qquad\qquad\qquad\ Emperical Risk \qquad\qquad\quad Excess Risk}
 		\begin{mdframed}
-			\begin{minipage}{0.33\textwidth}
+			\begin{minipage}{0.3\linewidth}
 				\[
-					R(f) := \mathbb{E}_{(X,Y)}[\ell(f(X),\, Y)]
+					R(f) := \mathbb{E}_{(X,Y)} \Big[\loss \big(f(X),\, Y\big)\Big]
 				\]
 			\end{minipage}%
-			\quad\vrule\quad%
-			\begin{minipage}{0.33\textwidth}
+			\hfill\vrule\hfill%
+			\begin{minipage}{0.35\linewidth}
 				\[
-					\widehat{R}_{\mathcal{D}}(f) := \frac{1}{\Card{\mathcal{D}}} \sum_{i \in \mathcal{D}} [\ell(f(X_i),\, Y_i)]
+					\widehat{R}_{\mathcal{D}}(f) := \frac{1}{\Card{\mathcal{D}}} \sum_{i \in \mathcal{D}} \Big[\loss \big(f(X_i),\, Y_i\big)\Big]
 				\]
 			\end{minipage}%
-			\quad\vrule\quad%
-			\begin{minipage}{0.33\textwidth}
+			\hfill\vrule\hfill%
+			\begin{minipage}{0.25\linewidth}
 				\[
 					\Exp{R(\estimate{f}_{n})} - R(\optimal{f})
 				\]
@@ -162,17 +170,15 @@
 		\end{mdframed}
 	\subsection{Structural Risk}
 		\begin{mdframed}
-			\begin{minipage}{.5\textwidth}
-				\[
-					\abs{R(f) - \widehat{R}_{n}(f)} \leq C(f)\qquad \forall\, f \in \mathcal{F}
-				\]
-				\[
-					R(f) \leq \widehat{R}_{n} + C(f),\qquad \forall\, f \in \mathcal{F}
-				\]
+			\begin{minipage}{0.35\linewidth}
+				\begin{align*}
+					& \abs{R(f) - \widehat{R}_{n}(f)} \leq C(f) & \forall\, f \in \mathcal{F} \\
+					& R(f) \leq \widehat{R}_{n}(f) + C(f) & \forall\, f \in \mathcal{F}\\
+				\end{align*}
 				Use \(\widehat{R}_{n}(\estimate{f}_{n}) + C(\estimate{f}_{n})\) as a \textit{pessimistic} estimate of true risk.
 			\end{minipage}%
-			\begin{minipage}{.5\textwidth}
-				\includegraphics{structural_risk_curve.png}
+			\begin{minipage}{0.65\linewidth}
+				\includegraphics[width=\linewidth]{structural_risk_curve.png}
 			\end{minipage}
 		\end{mdframed}
 
@@ -180,53 +186,68 @@
 	\section{Risk Estimation}
 		\subsection{Bias--Variance Tradeoff}
 			\begin{mdframed}
-				\begin{minipage}{.33\textwidth}
-					\[
-						\mathrm{Bias} = \Exp{f(X)} - \optimal{f}(X)
-					\]
-					\[
-						\mathrm{Variance} = \Exp{{(f(X) - \Exp{f(X))}^2}}
-					\]
-					\[
-						\Exp{{(f(X) - \optimal{f}(X))}^2} = \mathrm{Bias}^2 + \mathrm{Variance}
-					\]
+				\begin{minipage}{0.3\linewidth}
+					\begin{align*}
+						\mathrm{Bias} &= \Exp{f(X)} - \optimal{f}(X) \\
+						\mathrm{Variance} &= \Exp{{(f(X) - \Exp{f(X))}^2}} \\
+						\mathrm{Bias}^2 &+ \mathrm{Variance} = \\
+						& \Exp{{(f(X) - \optimal{f}(X))}^2}
+					\end{align*}
 				\end{minipage}%
-				\begin{minipage}{.33\textwidth}
-					\includegraphics{bias_vs_variance_error.png}
+				\hfill%
+				\begin{minipage}{0.3\linewidth}
+					\includegraphics[width=\linewidth]{bias_vs_variance_error.png}
 				\end{minipage}%
-				\begin{minipage}{.33\textwidth}
-					\includegraphics{test_vs_train_error.png}
+				\hfill%
+				\begin{minipage}{0.3\linewidth}
+					\includegraphics[width=\linewidth]{test_vs_train_error.png}
 				\end{minipage}
 			\end{mdframed}
 		\subsection{K--Fold CV \qquad\qquad\qquad\quad LOO CV \qquad\qquad\qquad Random Subsampling}
 			\begin{mdframed}
-				\begin{minipage}{.33\textwidth}
-					\includegraphics{K_fold_cross_validation.png}
+				% width=0.95\linewidth,totalheight=0.95\textheight,keepaspectratio
+				\begin{minipage}{0.3\linewidth}
+					\includegraphics[width=\linewidth]{K_fold_cross_validation.png}
 				\end{minipage}%
-				\begin{minipage}{.33\textwidth}
-					\includegraphics{LOO_cross_validation.png}
+				\hfill%
+				\begin{minipage}{0.3\linewidth}
+					\includegraphics[width=\linewidth]{LOO_cross_validation.png}
 				\end{minipage}%
-				\begin{minipage}{.33\textwidth}
-					\includegraphics{random_subsampling.png}
+				\hfill%
+				\begin{minipage}{0.3\linewidth}
+					\includegraphics[width=\linewidth]{random_subsampling.png}
 				\end{minipage}
 			\end{mdframed}
 		\subsection{Hold--out Method}
 			\begin{mdframed}
-				\[
-					\mathcal{D} = \Set{(X_i,\, Y_i)}_{i=1}^{n}
-				\]
-				1. Split into two sets
-				\[
-					\underbrace{\mathcal{D}_{T} = \Set{(X_i,\, Y_i)}_{i=1}^{m}}_{\text{training set}}
-					\qquad\qquad
-					\underbrace{\mathcal{D}_{V} = \Set{(X_i,\, Y_i)}_{i=m+1}^{n}}_{\text{holdout set}}
-				\]
-				2. use \(\mathcal{D}_{T}\) to train a predictor \(\estimate{f}_{\mathcal{D}_{T}}\)\\
-				3. use \(\mathcal{D}_{V}\) to evaluate the predictor \(\widehat{R}_{\mathcal{D}_{V}}(\estimate{f}_{\mathcal{D}_{T}})\)
+				\begin{minipage}{0.4\linewidth}
+					\begin{enumerate}[leftmargin=*]
+						\item split into two sets
+						\item use \(\mathcal{D}_{T}\) to train a predictor \(\estimate{f}_{\mathcal{D}_{T}}\)
+						\item use \(\mathcal{D}_{V}\) to evaluate the predictor,
+					\end{enumerate}
+					\[
+						\widehat{R}_{\mathcal{D}_{V}}(\estimate{f}_{\mathcal{D}_{T}})
+					\]
+				\end{minipage}%
+				\hfill\vrule\hfill%
+				\begin{minipage}{0.50\linewidth}
+					\[
+						\mathcal{D} = \Set{(X_i,\, Y_i)}_{i=1}^{n}
+					\]
+					\[
+						\downarrow
+					\]
+					\[
+						\underbrace{\mathcal{D}_{T} = \Set{(X_i,\, Y_i)}_{i=1}^{m}}_{\text{training set}}
+						\qquad
+						\underbrace{\mathcal{D}_{V} = \Set{(X_i,\, Y_i)}_{i=m+1}^{n}}_{\text{holdout set}}
+					\]
+				\end{minipage}
 			\end{mdframed}
 		\subsection{Estimating True Risk}
 			\begin{mdframed}
-				\begin{minipage}{.5\textwidth}
+				\begin{minipage}{0.5\linewidth}
 					Estimate the error of a predictor on \(n\) data points.\\
 					If K is large (close to \(n)\), bias of error estimate is small since each training set has close to \(n\) data points.\\
 					However, variance of error estiamtes is high since each validation set has fewer data points and \(\widehat{R}_{V_{k}}\) might deviate a lot from the mean.\\
@@ -234,56 +255,67 @@
 						\text{Error estimate} = \frac{1}{K} \sum_{k=1}^{K} \widehat{R}_{V_{k}} (\estimate{f}_{T_{k}})
 					\]
 				\end{minipage}%
-				\begin{minipage}{.5\textwidth}
-					\includegraphics{estimating_true_risk.png}
+				\begin{minipage}{0.5\linewidth}
+					\hfill\includegraphics[width=0.85\linewidth]{estimating_true_risk.png}
 				\end{minipage}
 			\end{mdframed}
 
 % Foundations
 \section{Risk Minimization} \seperator
-	\subsection{Emperical Risk Minimization \qquad\qquad\qquad\quad Structural Risk Minimization}
+	\subsection{Emperical Risk Minimization \qquad\qquad\qquad Structural Risk Minimization}
 		\begin{mdframed}
-			\begin{minipage}{0.5\textwidth}
+			\begin{minipage}{0.5\linewidth}
 				\[
-					\widehat{f_n} = \argmin_{f} \frac{1}{n} \sum_{i=1}{n} [\mathrm{loss}(Y_i,\, f(x_i))]
+					\widehat{f_n} = \argmin_{f} \frac{1}{n} \sum_{i=1}^{n} \bigg[\loss \Big( Y_i,\, f(x_i) \Big) \bigg]
 				\]
 			\end{minipage}%
 			\quad\vrule\quad%
-			\begin{minipage}{0.5\textwidth}
+			\begin{minipage}{0.5\linewidth}
 				\[
-					\estimate{f}_{n} = \argmin_{f \in \mathcal{F}} \lbrack \widehat{R}_{n}(f) + \lambda C(f) \rbrack
+					\estimate{f}_{n} = \argmin_{f \in \mathcal{F}} \Big\lbrack \widehat{R}_{n}(f) + \lambda C(f) \Big\rbrack
 				\]
 			\end{minipage}
 		\end{mdframed}
 
+\columnbreak
+
 % Foundations
 \section{Overfitting} \seperator
 	\begin{mdframed}
-		\begin{minipage}{\textwidth}
+		\begin{minipage}{0.3\linewidth}
+			discrepency between emperical risk and true risk,\\ so emperical risk is no longer a good indicator of true risk
+		\end{minipage}%
+		\begin{minipage}{0.7\linewidth}
 			\begin{center}
         \centering
-        \includegraphics{overfitting.png}
+        \includegraphics[width=\linewidth]{overfitting.png}
       \end{center}
-		\end{minipage}\\
-		\textit{overfitting} : \textit{discrepency between emperical risk and true risk}\\
-		so emperical risk is no longer a good indicator of true risk
+		\end{minipage}
 	\end{mdframed}
 
 % Foundations
 \section{Regularization} \seperator
 	\subsection{Complexity Regularization}
 		\begin{mdframed}
-			\[
-				\estimate{f}_{n} = \argmin_{f \in \mathcal{F}} \lbrace \widehat{R}_{n}(f) + C(f) \rbrace
-			\]
+			\begin{minipage}{0.5\linewidth}%
+				\[
+					\estimate{f}_{n} = \argmin_{f \in \mathcal{F}} \Big\lbrace \widehat{R}_{n}(f) + \lambda C(f) \Big\rbrace
+				\]
+			\end{minipage}%
+			\begin{minipage}{0.5\linewidth}%
+				\begin{align*}
+					C(f) &\ \colon\ \text{bound on deviation from true risk}\\
+					\lambda &\ \colon\ \text{regularization penality}
+				\end{align*}
+			\end{minipage}
 		\end{mdframed}
 	\subsection{Information Criteria}
 		\begin{mdframed}
-			AIC (Akiake IC) \quad \(C(f) = \# parameters\)\\
+			AIC (Akiake IC) \quad \(C(f) = \#\, parameters\)\\
 			\indent Allows \(\#\) parameters to be infinite as \(\#\) training data \(n\) becomes large
 		\end{mdframed}
 		\begin{mdframed}
-			BIC (Bayesian IC) \quad \(C(f) = \# parameters * \log n\)\\
+			BIC (Bayesian IC) \quad \(C(f) = \#\, parameters * \log n\)\\
 			\indent Penalizes complex models more heavily -- limits complexity of models as \(\#\) training data \(n\) becomes large
 		\end{mdframed}
 
@@ -309,14 +341,20 @@
 \section{Generalization Error} \seperator
 	\subsection{Terms}
 		\begin{mdframed}
-			\begin{align*}
-				& \text{estimated predictor} := \estimate{f}_{n} \\
-				& \text{optimal predictor} := \optimal{f} \\
-				& \text{risk of estimated predictor} := R(\estimate{f}_{n}) \\
-				& \text{expected risk} := \Exp{R(\estimate{f}_{n})} \\
-				& \text{risk of optimal predictor} := R(\optimal{f}) \\
-				& \text{excess risk} := \Exp{R(\estimate{f}_{n})} - R(\optimal{f})
-			\end{align*}
+			\begin{minipage}{0.5\linewidth}
+				\begin{gather*}
+					\text{estimated predictor} := \estimate{f}_{n} \\
+					\text{risk of estimated predictor} := R(\estimate{f}_{n}) \\
+					\text{expected risk} := \Exp{R(\estimate{f}_{n})}
+				\end{gather*}
+			\end{minipage}%
+			\begin{minipage}{0.5\linewidth}
+				\begin{gather*}
+					\text{optimal predictor} := \optimal{f} \\
+					\text{risk of optimal predictor} := R(\optimal{f}) \\
+					\text{excess risk} := \Exp{R(\estimate{f}_{n})} - R(\optimal{f})
+				\end{gather*}
+			\end{minipage}
 		\end{mdframed}
 	\subsection{True Risk Decomposition}
 		\begin{mdframed}
@@ -327,16 +365,16 @@
 		\textit{Approximation Error} : due to restriction of model class \\
 		\end{mdframed}
 		\begin{mdframed}
-			\begin{minipage}{0.5\textwidth}
-				\includegraphics{true_risk_triangle.png}
+			\begin{minipage}{0.5\linewidth}
+				\includegraphics[width=0.95\linewidth]{true_risk_triangle.png}
 			\end{minipage}%
-			\begin{minipage}{0.5\textwidth}
-				\includegraphics{true_risk_curve.png}
+			\begin{minipage}{0.5\linewidth}
+				\includegraphics[width=0.5\linewidth]{true_risk_curve.png}
 			\end{minipage}
 		\end{mdframed}
 
-\clearpage		
-		
+\clearpage
+
 % Parametric Models
 \section{Regression} \seperator
 	\subsection{Linear Regression}
