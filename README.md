@@ -20,7 +20,7 @@ If you decide to use this cheatsheet, I suggest that you refactor it for yoursel
 
 ## Download
 If you just want the pdf without the hassle of re-compiling the source. Here you go:
-[Dropbox Link](http://www.dropbox.com/s/o1k4ue4akaewdgo/10-701-cheatsheet.pdf)
+[Dropbox Link](https://www.dropbox.com/s/ntjnj9szjvyqos3/10-701-cheatsheet.pdf)
 
 ## Compiling
 
